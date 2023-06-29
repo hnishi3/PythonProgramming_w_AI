@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>レッスン7：ファイル入出力 &#8212; Python Programming with AI</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hnishi3.github.io/PythonProgramming_w_AI/7_ファイル入出力.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="レッスン8：Pythonによるデータサイエンス入門：NumPy, Pandas, Matplotlib" href="8_Python%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E5%85%A5%E9%96%80.html" />
+    <link rel="prev" title="レッスン6：関数" href="6_%E9%96%A2%E6%95%B0.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo_s.jpeg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Python Programming with AI</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   はじめに
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python プログラミング入門
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_Python%E3%81%AE%E5%9F%BA%E7%A4%8E.html">
+   レッスン1：Pythonと基本的な構文の紹介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_%E5%A4%89%E6%95%B0%E3%80%81%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%80%81%E6%BC%94%E7%AE%97%E5%AD%90.html">
+   レッスン2：変数、データ型、演算子
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3_%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B2%90%E3%81%A8%E3%83%AB%E3%83%BC%E3%83%97.html">
+   レッスン3：制御フロー - 条件分岐とループ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0.html">
+   レッスン4：データ構造
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5_%E9%96%A2%E6%95%B0%E3%81%AE%E5%9F%BA%E7%A4%8E%E3%81%A8%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB.html">
+   レッスン5：関数の基礎とモジュール
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6_%E9%96%A2%E6%95%B0.html">
+   レッスン6：関数
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   レッスン7：ファイル入出力
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="8_Python%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E5%85%A5%E9%96%80.html">
+   レッスン8：Pythonによるデータサイエンス入門：NumPy, Pandas, Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="9_Python%E3%81%AB%E3%82%88%E3%82%8B%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%85%A5%E9%96%80.html">
+   レッスン9：Pythonによる機械学習入門：Scikit-learn
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/7_ファイル入出力.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hnishi3/PythonProgramming_w_AI"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/hnishi3/PythonProgramming_w_AI/blob/main/7_ファイル入出力.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   ファイルを開く
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   ファイルを読み書きする
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   ファイルを閉じる
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#google-colabio">
+   Google ColabでのファイルIO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   演習問題
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>レッスン7：ファイル入出力</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   ファイルを開く
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   ファイルを読み書きする
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   ファイルを閉じる
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#google-colabio">
+   Google ColabでのファイルIO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   演習問題
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>レッスン7：ファイル入出力<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>このレッスンでは、Pythonでのファイル入出力（I/O）について学習します。ファイルI/Oは、プログラムが外部のファイルとやり取りするための基本的な機能です。これにより、テキストファイルやCSV、画像、その他の形式のファイルを読み書きすることが可能になります。
+PythonのファイルI/Oには主に以下の3つのステップがあります：</p>
+<ol class="simple">
+<li><p><strong>ファイルを開く</strong> - <code class="docutils literal notranslate"><span class="pre">open()</span></code>関数を使用してファイルを開きます。この関数はファイル名とモード（読み取り、書き込み、追加など）を引数に取ります。</p></li>
+<li><p><strong>ファイルを読み書きする</strong> - <code class="docutils literal notranslate"><span class="pre">read()</span></code>、<code class="docutils literal notranslate"><span class="pre">write()</span></code>、<code class="docutils literal notranslate"><span class="pre">readline()</span></code>などのメソッドを使用してファイルを読み書きします。</p></li>
+<li><p><strong>ファイルを閉じる</strong> - <code class="docutils literal notranslate"><span class="pre">close()</span></code>メソッドを使用してファイルを閉じます。ファイルを閉じることは、メモリを解放し、他のプログラムがそのファイルを使用できるようにするために重要です。
+これらの基本的なステップを通じて、PythonでファイルIOを行う方法を学びます。</p></li>
+</ol>
+<p>注：ローカルなコンピュータとGoogle Colabでは環境が異なるため、最初の3つのセクションでは、書かれたコードは敢えて実行できないようになっています。4番目の「Google ColabでのファイルI/O」からはコードが実行できるようになっていますが、ファイルがない場合にはエラーが表示されます。</p>
+<div class="section" id="id2">
+<h2>ファイルを開く<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Pythonでファイルを開くには、<code class="docutils literal notranslate"><span class="pre">open()</span></code>関数を使用します。この関数は、ファイル名とモードを引数に取ります。モードは以下のようなものがあります：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'r'</span></code> - 読み取りモード（デフォルト）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'w'</span></code> - 書き込みモード（既存のファイルは削除されます）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'a'</span></code> - 追記モード（ファイルが存在しない場合は新規作成します）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'x'</span></code> - 排他的作成モード（ファイルが存在しない場合のみ新規作成します）
+また、モードには以下の修飾子を追加することもできます：</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'b'</span></code> - バイナリモード</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'t'</span></code> - テキストモード（デフォルト）
+例えば、テキストファイルを読み取りモードで開くには以下のようにします：</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>このコードは、’myfile.txt’という名前のファイルを読み取りモードで開きます。ファイルオブジェクトは変数<code class="docutils literal notranslate"><span class="pre">f</span></code>に格納されます。</p>
+</div>
+<div class="section" id="id3">
+<h2>ファイルを読み書きする<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>ファイルオブジェクトが作成されたら、そのメソッドを使用してファイルを読み書きすることができます。以下に、最も一般的に使用されるいくつかのメソッドを示します：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">read(size)</span></code> - ファイルから最大<code class="docutils literal notranslate"><span class="pre">size</span></code>バイトを読み取ります。<code class="docutils literal notranslate"><span class="pre">size</span></code>が指定されていない場合、または負の数が指定されている場合、ファイルの残り全体を読み取ります。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">readline()</span></code> - ファイルから1行を読み取ります。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">write(string)</span></code> - ファイルに<code class="docutils literal notranslate"><span class="pre">string</span></code>を書き込みます。戻り値は書き込まれた文字数です。
+以下に、ファイルを読み取る例を示します：</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>このコードは、’myfile.txt’という名前のファイルを開き、その内容を読み取り、結果を表示します。最後に、<code class="docutils literal notranslate"><span class="pre">close()</span></code>メソッドを使用してファイルを閉じます。</p>
+</div>
+<div class="section" id="id4">
+<h2>ファイルを閉じる<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>ファイルを開いた後は、必ず最後にそれを閉じる必要があります。これは、<code class="docutils literal notranslate"><span class="pre">close()</span></code>メソッドを使用して行います。ファイルを閉じることは重要で、これにより未保存の変更が書き込まれ、メモリが解放されます。また、他のプログラムやスクリプトがそのファイルを使用できるようになります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>このコードは、’myfile.txt’という名前のファイルを開き、その内容を読み取り、結果を表示します。そして、<code class="docutils literal notranslate"><span class="pre">close()</span></code>メソッドを使用してファイルを閉じます。
+ファイルを閉じることを忘れると、データの損失やバグの原因となる可能性があります。そのため、Pythonでは<code class="docutils literal notranslate"><span class="pre">with</span></code>ステートメントを使用してファイルを安全に扱うことが推奨されています。<code class="docutils literal notranslate"><span class="pre">with</span></code>ステートメントを使用すると、ブロックの実行が終了した時点でファイルが自動的に閉じられます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>このコードは、’myfile.txt’という名前のファイルを開き、その内容を読み取り、結果を表示します。<code class="docutils literal notranslate"><span class="pre">with</span></code>ステートメントのブロックが終了すると、ファイルは自動的に閉じられます。</p>
+</div>
+<div class="section" id="google-colabio">
+<h2>Google ColabでのファイルIO<a class="headerlink" href="#google-colabio" title="Permalink to this headline">¶</a></h2>
+<p>Google Colabでは、ローカルファイルシステムへのアクセスが制限されています。そのため、ファイルIOを行うためには特別な手順が必要です。</p>
+<p>Google Colabでは、Google Driveをファイルストレージとして使用することが一般的です。Google Driveをマウントすると、Google Driveのファイルに直接アクセスできるようになります。</p>
+<p>以下に、Google Driveをマウントし、Google Drive上のファイルを読み書きするための基本的な手順を示します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">d5df0069828e</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>上記のコードを実行すると、Googleアカウントへのログインを求めるプロンプトが表示されます。ログインし、必要に応じて認証コードをコピーしてColabに貼り付けると、Google Driveがマウントされます。</p>
+<p>Google Driveがマウントされると、<code class="docutils literal notranslate"><span class="pre">/content/drive/My</span> <span class="pre">Drive/</span></code>からGoogle Driveのファイルにアクセスできます。以下に、Google Drive上のテキストファイルを開き、読み取る例を示します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/drive/My Drive/myfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>このコードは、Google Drive上の<code class="docutils literal notranslate"><span class="pre">myfile.txt</span></code>という名前のファイルを開き、その内容を読み取り、結果を表示します。<code class="docutils literal notranslate"><span class="pre">myfile.txt</span></code>がない場合はエラーになります。</p>
+<p>また、Google Colabでは、以下のようにしてローカルファイルシステムからファイルをアップロードすることもできます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>このコードを実行すると、ファイル選択ダイアログが表示されます。アップロードしたいファイルを選択すると、そのファイルは**Google DriveではなくColabのランタイム環境（このノートブックを実行するために用意された、一時的な環境）にアップロードされます。**アップロードされたファイルは、次のようにして開くことができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>このコードは、先ほどアップロードした<code class="docutils literal notranslate"><span class="pre">myfile.txt</span></code>という名前のファイルを開き、その内容を読み取り、結果を表示します。</p>
+<p>注：今回ファイルは一時的な環境にアップロードされたため、**このノートブックを閉じたり長い時間操作しないでいるとランタイムとの接続が切れ、アップロードしたファイルも消失します。**必ずローカルにコピーを残すようにしてください。</p>
+<p>以上が、Pythonでの基本的なファイルI/Oと、Google ColabでのファイルI/Oの方法です。これらの知識を使って、Pythonプログラムでファイルを効率的に読み書きすることができます。</p>
+</div>
+<div class="section" id="id5">
+<h2>演習問題<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>ランタイム環境でもGoogle Driveでも良いので、テキストファイル（<code class="docutils literal notranslate"><span class="pre">exercise1.txt</span></code>）を作成し、その中に以下の3行のテキストを書き込んでください（ファイルの書き込み方が分からない場合は、ChatGPTに聞いてみましょう）</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hello, World!
+Python is fun.
+Let&#39;s learn file IO.
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>問題1で作成したファイルを開き、その内容を読み取り、表示してください。</p></li>
+<li><p>問題1で作成したファイルの末尾に以下のテキストを追加してください。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>その後、ファイルの内容を再度読み取り、表示してください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 演習問題</span>
+<span class="c1"># 以下にコードを書いてみましょう</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="6_%E9%96%A2%E6%95%B0.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">レッスン6：関数</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="8_Python%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E5%85%A5%E9%96%80.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">レッスン8：Pythonによるデータサイエンス入門：NumPy, Pandas, Matplotlib</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Hafumi Nishi<br/>
+    
+        &copy; Copyright 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
