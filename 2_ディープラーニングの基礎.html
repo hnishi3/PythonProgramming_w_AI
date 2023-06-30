@@ -358,20 +358,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">fe86f402b8c9</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># 必要なライブラリのインポート</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">tensorflow.keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;tensorflow&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>次に、MNISTという手書き数字のデータセットをロードします。このデータセットは、0から9までの手書き数字の画像（28x28ピクセル）と、それぞれの画像が何の数字であるかを示すラベルから構成されています。データセットは訓練データとテストデータの2つに分けられ、訓練データでモデルを訓練した後、テストデータでモデルの性能を評価します。</p>
 <div class="cell docutils container">
@@ -383,7 +369,97 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
-11490434/11490434 [==============================] - 0s 0us/step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   16384/11490434 [..............................] - ETA: 42s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+   49152/11490434 [..............................] - ETA: 37s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+   81920/11490434 [..............................] - ETA: 36s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  147456/11490434 [..............................] - ETA: 24s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  212992/11490434 [..............................] - ETA: 20s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  294912/11490434 [..............................] - ETA: 16s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  458752/11490434 [&gt;.............................] - ETA: 11s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  622592/11490434 [&gt;.............................] - ETA: 9s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  811008/11490434 [=&gt;............................] - ETA: 7s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1376256/11490434 [==&gt;...........................] - ETA: 4s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 2080768/11490434 [====&gt;.........................] - ETA: 3s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3088384/11490434 [=======&gt;......................] - ETA: 2s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3907584/11490434 [=========&gt;....................] - ETA: 1s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5095424/11490434 [============&gt;.................] - ETA: 1s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5963776/11490434 [==============&gt;...............] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 6963200/11490434 [=================&gt;............] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7782400/11490434 [===================&gt;..........] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 8830976/11490434 [======================&gt;.......] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9568256/11490434 [=======================&gt;......] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10633216/11490434 [==========================&gt;...] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+11337728/11490434 [============================&gt;.] - ETA: 0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+11493376/11490434 [==============================] - 1s 0us/step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+11501568/11490434 [==============================] - 1s 0us/step
 </pre></div>
 </div>
 </div>
@@ -416,10 +492,10 @@
 </div>
 </div>
 <p>このモデルは、入力層、隠れ層、出力層の3つの層から構成されています。入力層のニューロンの数は、入力データの次元数（ここでは28*28=784）と同じです。隠れ層は512のニューロンを持ち、活性化関数としてReLU（Rectified Linear Unit）を使用します。出力層は10のニューロンを持ち、活性化関数としてソフトマックスを使用します。ソフトマックス関数は、各出力ニューロンの出力を0から1の間の確率に変換します。</p>
-<p>![image.png](data:image/png;base64,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)</p>
+<p><img alt="image.png" src="_images/nn.png" /></p>
 <p>また、ReLU関数は以下のような形状になっています。</p>
 <p>参考：ReLU関数　<a class="reference external" href="https://www.wolframalpha.com/input?i=ReLU+function">https://www.wolframalpha.com/input?i=ReLU+function</a></p>
-<p>![image.png](data:image/png;base64,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)</p>
+<p><img alt="image.png" src="_images/relu.png" /></p>
 <p>次に、モデルをコンパイルします。これは、モデルの学習方法を設定するステップです。損失関数、最適化アルゴリズム、評価指標を指定します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -444,15 +520,577 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/5
-469/469 [==============================] - 13s 24ms/step - loss: 0.2664 - accuracy: 0.9228 - val_loss: 0.1324 - val_accuracy: 0.9607
-Epoch 2/5
-469/469 [==============================] - 6s 12ms/step - loss: 0.1099 - accuracy: 0.9682 - val_loss: 0.1050 - val_accuracy: 0.9661
-Epoch 3/5
-469/469 [==============================] - 6s 13ms/step - loss: 0.0722 - accuracy: 0.9780 - val_loss: 0.0791 - val_accuracy: 0.9752
-Epoch 4/5
-469/469 [==============================] - 8s 17ms/step - loss: 0.0528 - accuracy: 0.9839 - val_loss: 0.0705 - val_accuracy: 0.9785
-Epoch 5/5
-469/469 [==============================] - 10s 21ms/step - loss: 0.0398 - accuracy: 0.9882 - val_loss: 0.0672 - val_accuracy: 0.9796
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1/469 [..............................] - ETA: 3:13 - loss: 2.4631 - accuracy: 0.1016
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  6/469 [..............................] - ETA: 4s - loss: 1.5708 - accuracy: 0.5013  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 15/469 [..............................] - ETA: 3s - loss: 1.0866 - accuracy: 0.6771
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 29/469 [&gt;.............................] - ETA: 2s - loss: 0.8118 - accuracy: 0.7651
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 47/469 [==&gt;...........................] - ETA: 1s - loss: 0.6677 - accuracy: 0.8067
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 66/469 [===&gt;..........................] - ETA: 1s - loss: 0.5811 - accuracy: 0.8325
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 82/469 [====&gt;.........................] - ETA: 1s - loss: 0.5370 - accuracy: 0.8446
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 97/469 [=====&gt;........................] - ETA: 1s - loss: 0.5030 - accuracy: 0.8545
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+113/469 [======&gt;.......................] - ETA: 1s - loss: 0.4688 - accuracy: 0.8640
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+131/469 [=======&gt;......................] - ETA: 1s - loss: 0.4384 - accuracy: 0.8718
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+148/469 [========&gt;.....................] - ETA: 1s - loss: 0.4175 - accuracy: 0.8789
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+163/469 [=========&gt;....................] - ETA: 1s - loss: 0.4009 - accuracy: 0.8837
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+179/469 [==========&gt;...................] - ETA: 1s - loss: 0.3852 - accuracy: 0.8883
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+196/469 [===========&gt;..................] - ETA: 0s - loss: 0.3714 - accuracy: 0.8923
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+214/469 [============&gt;.................] - ETA: 0s - loss: 0.3575 - accuracy: 0.8962
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+230/469 [=============&gt;................] - ETA: 0s - loss: 0.3495 - accuracy: 0.8984
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+248/469 [==============&gt;...............] - ETA: 0s - loss: 0.3397 - accuracy: 0.9014
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+266/469 [================&gt;.............] - ETA: 0s - loss: 0.3292 - accuracy: 0.9044
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+285/469 [=================&gt;............] - ETA: 0s - loss: 0.3200 - accuracy: 0.9069
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+304/469 [==================&gt;...........] - ETA: 0s - loss: 0.3112 - accuracy: 0.9095
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+323/469 [===================&gt;..........] - ETA: 0s - loss: 0.3034 - accuracy: 0.9120
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+342/469 [====================&gt;.........] - ETA: 0s - loss: 0.2961 - accuracy: 0.9145
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+360/469 [======================&gt;.......] - ETA: 0s - loss: 0.2894 - accuracy: 0.9163
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+378/469 [=======================&gt;......] - ETA: 0s - loss: 0.2826 - accuracy: 0.9184
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+394/469 [========================&gt;.....] - ETA: 0s - loss: 0.2791 - accuracy: 0.9194
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+411/469 [=========================&gt;....] - ETA: 0s - loss: 0.2744 - accuracy: 0.9206
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+428/469 [==========================&gt;...] - ETA: 0s - loss: 0.2681 - accuracy: 0.9222
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+442/469 [===========================&gt;..] - ETA: 0s - loss: 0.2642 - accuracy: 0.9233
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+458/469 [============================&gt;.] - ETA: 0s - loss: 0.2604 - accuracy: 0.9245
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+469/469 [==============================] - 2s 4ms/step - loss: 0.2573 - accuracy: 0.9253 - val_loss: 0.1260 - val_accuracy: 0.9623
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2/5
+
+  1/469 [..............................] - ETA: 1s - loss: 0.1235 - accuracy: 0.9609
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 16/469 [&gt;.............................] - ETA: 1s - loss: 0.0897 - accuracy: 0.9707
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 32/469 [=&gt;............................] - ETA: 1s - loss: 0.0931 - accuracy: 0.9707
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 50/469 [==&gt;...........................] - ETA: 1s - loss: 0.1018 - accuracy: 0.9683
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 68/469 [===&gt;..........................] - ETA: 1s - loss: 0.1069 - accuracy: 0.9661
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 86/469 [====&gt;.........................] - ETA: 1s - loss: 0.1139 - accuracy: 0.9648
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+104/469 [=====&gt;........................] - ETA: 1s - loss: 0.1126 - accuracy: 0.9656
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+123/469 [======&gt;.......................] - ETA: 1s - loss: 0.1129 - accuracy: 0.9665
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+142/469 [========&gt;.....................] - ETA: 0s - loss: 0.1140 - accuracy: 0.9658
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+160/469 [=========&gt;....................] - ETA: 0s - loss: 0.1119 - accuracy: 0.9666
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+179/469 [==========&gt;...................] - ETA: 0s - loss: 0.1128 - accuracy: 0.9660
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+198/469 [===========&gt;..................] - ETA: 0s - loss: 0.1129 - accuracy: 0.9659
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+216/469 [============&gt;.................] - ETA: 0s - loss: 0.1105 - accuracy: 0.9666
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+233/469 [=============&gt;................] - ETA: 0s - loss: 0.1114 - accuracy: 0.9663
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+251/469 [===============&gt;..............] - ETA: 0s - loss: 0.1094 - accuracy: 0.9669
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+269/469 [================&gt;.............] - ETA: 0s - loss: 0.1099 - accuracy: 0.9671
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+287/469 [=================&gt;............] - ETA: 0s - loss: 0.1094 - accuracy: 0.9673
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+303/469 [==================&gt;...........] - ETA: 0s - loss: 0.1087 - accuracy: 0.9674
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+320/469 [===================&gt;..........] - ETA: 0s - loss: 0.1074 - accuracy: 0.9678
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+337/469 [====================&gt;.........] - ETA: 0s - loss: 0.1068 - accuracy: 0.9682
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+355/469 [=====================&gt;........] - ETA: 0s - loss: 0.1063 - accuracy: 0.9684
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+372/469 [======================&gt;.......] - ETA: 0s - loss: 0.1058 - accuracy: 0.9686
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+391/469 [========================&gt;.....] - ETA: 0s - loss: 0.1051 - accuracy: 0.9689
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+409/469 [=========================&gt;....] - ETA: 0s - loss: 0.1042 - accuracy: 0.9692
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+427/469 [==========================&gt;...] - ETA: 0s - loss: 0.1048 - accuracy: 0.9690
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+446/469 [===========================&gt;..] - ETA: 0s - loss: 0.1050 - accuracy: 0.9689
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+464/469 [============================&gt;.] - ETA: 0s - loss: 0.1045 - accuracy: 0.9691
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+469/469 [==============================] - 1s 3ms/step - loss: 0.1043 - accuracy: 0.9691 - val_loss: 0.1072 - val_accuracy: 0.9657
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 3/5
+
+  1/469 [..............................] - ETA: 1s - loss: 0.0571 - accuracy: 0.9844
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 17/469 [&gt;.............................] - ETA: 1s - loss: 0.0761 - accuracy: 0.9784
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 33/469 [=&gt;............................] - ETA: 1s - loss: 0.0760 - accuracy: 0.9777
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 51/469 [==&gt;...........................] - ETA: 1s - loss: 0.0796 - accuracy: 0.9755
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 68/469 [===&gt;..........................] - ETA: 1s - loss: 0.0773 - accuracy: 0.9769
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 86/469 [====&gt;.........................] - ETA: 1s - loss: 0.0768 - accuracy: 0.9777
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+104/469 [=====&gt;........................] - ETA: 1s - loss: 0.0760 - accuracy: 0.9778
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+123/469 [======&gt;.......................] - ETA: 1s - loss: 0.0744 - accuracy: 0.9782
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+141/469 [========&gt;.....................] - ETA: 0s - loss: 0.0729 - accuracy: 0.9782
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+160/469 [=========&gt;....................] - ETA: 0s - loss: 0.0732 - accuracy: 0.9783
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+179/469 [==========&gt;...................] - ETA: 0s - loss: 0.0732 - accuracy: 0.9785
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+197/469 [===========&gt;..................] - ETA: 0s - loss: 0.0718 - accuracy: 0.9787
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+216/469 [============&gt;.................] - ETA: 0s - loss: 0.0719 - accuracy: 0.9786
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+233/469 [=============&gt;................] - ETA: 0s - loss: 0.0714 - accuracy: 0.9786
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+251/469 [===============&gt;..............] - ETA: 0s - loss: 0.0710 - accuracy: 0.9787
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+269/469 [================&gt;.............] - ETA: 0s - loss: 0.0709 - accuracy: 0.9789
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+287/469 [=================&gt;............] - ETA: 0s - loss: 0.0715 - accuracy: 0.9788
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+305/469 [==================&gt;...........] - ETA: 0s - loss: 0.0714 - accuracy: 0.9788
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+323/469 [===================&gt;..........] - ETA: 0s - loss: 0.0708 - accuracy: 0.9790
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+341/469 [====================&gt;.........] - ETA: 0s - loss: 0.0702 - accuracy: 0.9791
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+358/469 [=====================&gt;........] - ETA: 0s - loss: 0.0700 - accuracy: 0.9791
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+376/469 [=======================&gt;......] - ETA: 0s - loss: 0.0698 - accuracy: 0.9792
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+395/469 [========================&gt;.....] - ETA: 0s - loss: 0.0694 - accuracy: 0.9793
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+413/469 [=========================&gt;....] - ETA: 0s - loss: 0.0697 - accuracy: 0.9792
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+431/469 [==========================&gt;...] - ETA: 0s - loss: 0.0693 - accuracy: 0.9792
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+450/469 [===========================&gt;..] - ETA: 0s - loss: 0.0688 - accuracy: 0.9795
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+468/469 [============================&gt;.] - ETA: 0s - loss: 0.0686 - accuracy: 0.9795
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+469/469 [==============================] - 1s 3ms/step - loss: 0.0687 - accuracy: 0.9794 - val_loss: 0.0822 - val_accuracy: 0.9746
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 4/5
+
+  1/469 [..............................] - ETA: 1s - loss: 0.0564 - accuracy: 0.9844
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 19/469 [&gt;.............................] - ETA: 1s - loss: 0.0474 - accuracy: 0.9881
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 37/469 [=&gt;............................] - ETA: 1s - loss: 0.0471 - accuracy: 0.9871
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 55/469 [==&gt;...........................] - ETA: 1s - loss: 0.0481 - accuracy: 0.9864
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 73/469 [===&gt;..........................] - ETA: 1s - loss: 0.0485 - accuracy: 0.9861
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 91/469 [====&gt;.........................] - ETA: 1s - loss: 0.0491 - accuracy: 0.9857
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+109/469 [=====&gt;........................] - ETA: 1s - loss: 0.0489 - accuracy: 0.9855
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+127/469 [=======&gt;......................] - ETA: 0s - loss: 0.0488 - accuracy: 0.9855
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+145/469 [========&gt;.....................] - ETA: 0s - loss: 0.0496 - accuracy: 0.9852
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+159/469 [=========&gt;....................] - ETA: 0s - loss: 0.0500 - accuracy: 0.9847
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+177/469 [==========&gt;...................] - ETA: 0s - loss: 0.0517 - accuracy: 0.9843
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+195/469 [===========&gt;..................] - ETA: 0s - loss: 0.0525 - accuracy: 0.9840
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+212/469 [============&gt;.................] - ETA: 0s - loss: 0.0526 - accuracy: 0.9837
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+229/469 [=============&gt;................] - ETA: 0s - loss: 0.0523 - accuracy: 0.9838
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+245/469 [==============&gt;...............] - ETA: 0s - loss: 0.0523 - accuracy: 0.9837
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+260/469 [===============&gt;..............] - ETA: 0s - loss: 0.0523 - accuracy: 0.9839
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+278/469 [================&gt;.............] - ETA: 0s - loss: 0.0513 - accuracy: 0.9842
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+296/469 [=================&gt;............] - ETA: 0s - loss: 0.0511 - accuracy: 0.9842
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+314/469 [===================&gt;..........] - ETA: 0s - loss: 0.0511 - accuracy: 0.9843
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+332/469 [====================&gt;.........] - ETA: 0s - loss: 0.0507 - accuracy: 0.9842
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+350/469 [=====================&gt;........] - ETA: 0s - loss: 0.0512 - accuracy: 0.9841
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+368/469 [======================&gt;.......] - ETA: 0s - loss: 0.0515 - accuracy: 0.9841
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+386/469 [=======================&gt;......] - ETA: 0s - loss: 0.0509 - accuracy: 0.9843
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+404/469 [========================&gt;.....] - ETA: 0s - loss: 0.0506 - accuracy: 0.9845
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+422/469 [=========================&gt;....] - ETA: 0s - loss: 0.0503 - accuracy: 0.9845
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+440/469 [===========================&gt;..] - ETA: 0s - loss: 0.0499 - accuracy: 0.9847
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+458/469 [============================&gt;.] - ETA: 0s - loss: 0.0505 - accuracy: 0.9846
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+469/469 [==============================] - 1s 3ms/step - loss: 0.0505 - accuracy: 0.9845 - val_loss: 0.0718 - val_accuracy: 0.9790
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 5/5
+
+  1/469 [..............................] - ETA: 1s - loss: 0.0134 - accuracy: 1.0000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 19/469 [&gt;.............................] - ETA: 1s - loss: 0.0244 - accuracy: 0.9926
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 37/469 [=&gt;............................] - ETA: 1s - loss: 0.0300 - accuracy: 0.9911
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 52/469 [==&gt;...........................] - ETA: 1s - loss: 0.0303 - accuracy: 0.9911
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 70/469 [===&gt;..........................] - ETA: 1s - loss: 0.0304 - accuracy: 0.9911
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 87/469 [====&gt;.........................] - ETA: 1s - loss: 0.0307 - accuracy: 0.9911
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+104/469 [=====&gt;........................] - ETA: 1s - loss: 0.0316 - accuracy: 0.9907
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+122/469 [======&gt;.......................] - ETA: 1s - loss: 0.0329 - accuracy: 0.9905
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+141/469 [========&gt;.....................] - ETA: 0s - loss: 0.0333 - accuracy: 0.9900
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+160/469 [=========&gt;....................] - ETA: 0s - loss: 0.0323 - accuracy: 0.9902
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+178/469 [==========&gt;...................] - ETA: 0s - loss: 0.0327 - accuracy: 0.9901
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+196/469 [===========&gt;..................] - ETA: 0s - loss: 0.0342 - accuracy: 0.9896
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+215/469 [============&gt;.................] - ETA: 0s - loss: 0.0337 - accuracy: 0.9897
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+231/469 [=============&gt;................] - ETA: 0s - loss: 0.0334 - accuracy: 0.9898
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+248/469 [==============&gt;...............] - ETA: 0s - loss: 0.0341 - accuracy: 0.9897
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+267/469 [================&gt;.............] - ETA: 0s - loss: 0.0348 - accuracy: 0.9895
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+286/469 [=================&gt;............] - ETA: 0s - loss: 0.0352 - accuracy: 0.9893
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+305/469 [==================&gt;...........] - ETA: 0s - loss: 0.0352 - accuracy: 0.9894
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+323/469 [===================&gt;..........] - ETA: 0s - loss: 0.0356 - accuracy: 0.9892
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+342/469 [====================&gt;.........] - ETA: 0s - loss: 0.0358 - accuracy: 0.9892
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+361/469 [======================&gt;.......] - ETA: 0s - loss: 0.0360 - accuracy: 0.9892
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+380/469 [=======================&gt;......] - ETA: 0s - loss: 0.0367 - accuracy: 0.9889
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+399/469 [========================&gt;.....] - ETA: 0s - loss: 0.0374 - accuracy: 0.9887
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+416/469 [=========================&gt;....] - ETA: 0s - loss: 0.0375 - accuracy: 0.9886
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+434/469 [==========================&gt;...] - ETA: 0s - loss: 0.0376 - accuracy: 0.9886
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+450/469 [===========================&gt;..] - ETA: 0s - loss: 0.0376 - accuracy: 0.9885
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+468/469 [============================&gt;.] - ETA: 0s - loss: 0.0379 - accuracy: 0.9885
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+469/469 [==============================] - 1s 3ms/step - loss: 0.0378 - accuracy: 0.9885 - val_loss: 0.0677 - val_accuracy: 0.9793
 </pre></div>
 </div>
 </div>
@@ -490,8 +1128,18 @@ Epoch 5/5
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2_ディープラーニングの基礎_19_0.png" src="_images/2_ディープラーニングの基礎_19_0.png" />
-<img alt="_images/2_ディープラーニングの基礎_19_1.png" src="_images/2_ディープラーニングの基礎_19_1.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="mi">9</span><span class="n">b46599f798f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># 訓練の精度と損失値を取得</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">val_acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">]</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <p>以上が、ニューラルネットワークを用いた手書き数字の分類の基本的な流れです。一連のコードによって、手書き数字の画像を認識するニューラルネットワークのモデルを訓練し、新しい手書き文字に対してその数字がなんであるかを分類することができます。</p>
