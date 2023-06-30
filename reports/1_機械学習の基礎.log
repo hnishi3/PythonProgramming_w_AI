@@ -1,0 +1,84 @@
+Traceback (most recent call last):
+  File "/home/hnishi/.local/lib/python3.6/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "/home/hnishi/.local/lib/python3.6/site-packages/nbclient/client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/hnishi/.local/lib/python3.6/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/hnishi/.local/lib/python3.6/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 484, in run_until_complete
+    return future.result()
+  File "/home/hnishi/.local/lib/python3.6/site-packages/nbclient/client.py", line 560, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/home/hnishi/.local/lib/python3.6/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/hnishi/.local/lib/python3.6/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# 必要なライブラリのインポート
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+
+# 乱数の種を固定
+np.random.seed(0)
+
+# データの作成
+X = np.random.rand(100, 1)
+y = 2 + 3 * X + np.random.rand(100, 1)
+
+# データの分割（訓練データとテストデータ）
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# モデルの訓練（線形モデルを利用）
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# モデルの評価
+score = model.score(X_test, y_test)
+print(f'Model accuracy: {score * 100:.2f}%')
+
+# データの視覚化
+
+# 学習データとテストデータについて予測を実行
+y_train_pred = model.predict(X_train)
+y_test_pred = model.predict(X_test)
+
+# 元のデータを表示
+plt.scatter(X, y, color='blue', label='Original data')
+
+# トレーニングデータに対する予測値を表示
+plt.scatter(X_train, y_train_pred, color='red', label='Train data')
+
+# テストデータに対する予測値を表示
+plt.scatter(X_test, y_test_pred, color='green', label='Test data')
+
+# 回帰直線を表示
+x_line = np.linspace(0, 1, 100).reshape(-1, 1)
+y_line = model.predict(x_line)
+plt.plot(x_line, y_line, color='orange', label='Linear regression')
+
+# 凡例
+plt.legend(loc='best')
+plt.xlabel('X')
+plt.ylabel('y')
+
+plt.show()
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-71940f31f049>[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mlinear_model[0m [0;32mimport[0m [0mLinearRegression[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mmodel_selection[0m [0;32mimport[0m [0mtrain_test_split[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 5[0;31m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      6[0m [0;34m[0m[0m
+[1;32m      7[0m [0;31m# 乱数の種を固定[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'matplotlib'
+ModuleNotFoundError: No module named 'matplotlib'
+
